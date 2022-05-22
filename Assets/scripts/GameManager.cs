@@ -108,9 +108,10 @@ public class GameManager : MonoBehaviour
     private IEnumerator SpawnHazards()
     {
 
-        var hazardToSpawn = Random.Range(1, 4);
+        //var hazardToSpawn = Random.Range(2, 5);
+        var hazardToSpawn = Random.Range(1, 3);
 
-        for(int i  = 0; i < hazardToSpawn; i++)
+        for (int i  = 0; i < hazardToSpawn; i++)
         {
             var x = Random.Range(-10, 10);
             var z = Random.Range(-10, 10);
