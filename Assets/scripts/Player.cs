@@ -6,7 +6,7 @@ using Cinemachine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private float forceMultiplier = 3f;
+    private float forceMultiplier;
     [SerializeField]
     private ParticleSystem deathParticles;
 
@@ -31,10 +31,15 @@ public class Player : MonoBehaviour
             return;
         }
         var horizontalInput = Input.GetAxis("Horizontal");
+        var verticalInput = Input.GetAxis("Vertical");
 
-        if(GetComponent<Rigidbody>().velocity.magnitude <= 5f)
+        if(GetComponent<Rigidbody>().velocity.magnitude <= 8f && horizontalInput <= 8f)
         {
             GetComponent<Rigidbody>().AddForce(new Vector3(horizontalInput * forceMultiplier * Time.deltaTime, 0, 0));
+        }
+        if(GetComponent<Rigidbody>().velocity.magnitude <= 8f && verticalInput <= 8f)
+        {
+            GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, verticalInput * forceMultiplier * Time.deltaTime));
         }
     }
     

@@ -12,6 +12,7 @@ public class Hazard : MonoBehaviour
 
     private CinemachineImpulseSource cinemachineImpulseSource;
     private Player player;
+    private Coroutine destroyCoroutine;
 
     private void Start()
     {
@@ -20,6 +21,18 @@ public class Hazard : MonoBehaviour
 
         var xRotation = Random.Range(90f, 180f);
         rotation = new Vector3(-xRotation, 0);
+        
+    }
+
+    private IEnumerator DelayDestroy()
+    {
+        
+        yield return new WaitForSeconds(1f);
+        
+        Destroy(gameObject);
+        StopCoroutine(destroyCoroutine);
+
+        yield return null;
     }
 
     private void Update()
@@ -30,7 +43,8 @@ public class Hazard : MonoBehaviour
     {
         if(!collision.gameObject.CompareTag("Hazard"))
         {
-            Destroy(gameObject);
+            destroyCoroutine = StartCoroutine(DelayDestroy());
+            
             Instantiate(breakingEffect, transform.position, Quaternion.identity);
 
             if(player != null)

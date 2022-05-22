@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     private TMPro.TextMeshProUGUI scoreText;
     [SerializeField]
     private Image backgroundMenu;
-    
     [SerializeField]
     private GameObject player;
     [SerializeField]
@@ -20,8 +19,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject zoomVCam;
     [SerializeField]
+    private GameObject platform;
+    [SerializeField]
     private GameObject gameOverMenu;
-
     private int             highScore;
     private int             score;
     private float           timer;
@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
 
             timer = 0;
         }
+
     }
 
     private void Pause(){
@@ -111,9 +112,11 @@ public class GameManager : MonoBehaviour
 
         for(int i  = 0; i < hazardToSpawn; i++)
         {
-            var x = Random.Range(-7, 7);
+            var x = Random.Range(-10, 10);
+            var z = Random.Range(-10, 10);
+
             var drag = Random.Range(0f, 2f);
-            var hazard = Instantiate(hazardPrefab, new Vector3(x, 11, 0), Quaternion.identity);
+            var hazard = Instantiate(hazardPrefab, new Vector3(x, 11, z), Quaternion.identity);
 
             hazard.GetComponent<Rigidbody>().drag = drag;
 
@@ -140,6 +143,9 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt(HighScorePreferenceKey, highScore);
 
         }
+
+        platform.transform.rotation = new Quaternion(0,0,0,1);
+        platform.GetComponent<Rigidbody>().angularVelocity = new Vector3(0,0,0);
 
         mainVCam.SetActive(false);
         zoomVCam.SetActive(true);
