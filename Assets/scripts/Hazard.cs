@@ -26,10 +26,11 @@ public class Hazard : MonoBehaviour
 
     private IEnumerator DelayDestroy()
     {
-        
+        rotation = Vector3.zero;
         yield return new WaitForSeconds(1f);
         
         Destroy(gameObject);
+        Instantiate(breakingEffect, transform.position, Quaternion.identity);
         StopCoroutine(destroyCoroutine);
 
         yield return null;
@@ -45,8 +46,6 @@ public class Hazard : MonoBehaviour
         {
             destroyCoroutine = StartCoroutine(DelayDestroy());
             
-            Instantiate(breakingEffect, transform.position, Quaternion.identity);
-
             if(player != null)
             {
                 var distance = Vector3.Distance(transform.position, player.transform.position);

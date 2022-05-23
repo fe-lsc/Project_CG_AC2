@@ -598,6 +598,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9e0c1f6cbe377dd4f914c31166f528b7, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e0c1f6cbe377dd4f914c31166f528b7, type: 3}
 --- !u!1001 &68577250
@@ -2201,6 +2205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hazardPrefab: {fileID: 7355902975628980897, guid: 98664c44878bcfd4789cd55da3e16ea4, type: 3}
+  powerUpPrefab: {fileID: 695371979275548368, guid: f5641e298f0a23b44883fd9522a7822a, type: 3}
   scoreText: {fileID: 1952797864}
   backgroundMenu: {fileID: 1714267175}
   player: {fileID: 503950465}

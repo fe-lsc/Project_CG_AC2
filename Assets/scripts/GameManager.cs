@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject hazardPrefab;
     [SerializeField]
+    private GameObject powerUpPrefab;
+    [SerializeField]
     private TMPro.TextMeshProUGUI scoreText;
     [SerializeField]
     private Image backgroundMenu;
@@ -120,7 +122,16 @@ public class GameManager : MonoBehaviour
             var hazard = Instantiate(hazardPrefab, new Vector3(x, 11, z), Quaternion.identity);
 
             hazard.GetComponent<Rigidbody>().drag = drag;
+        }
 
+        if(score % 15 == 0 && score != 0){
+            var x = Random.Range(-10, 10);
+            var z = Random.Range(-10, 10);
+
+            var drag = Random.Range(0f, 2f);
+            var powerupInstance = Instantiate(powerUpPrefab, new Vector3(x, 11, z), Quaternion.identity);
+
+            powerupInstance.GetComponent<Rigidbody>().drag = drag;
         }
 
         var timeToWait = Random.Range(0.5f, 1.5f);
