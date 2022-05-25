@@ -1,0 +1,19 @@
+Using pre-set license
+Built from '2020.3/staging' branch; Version is '2020.3.32f1 (12f8b0834f07) revision 1243312'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10  (10.0.16299) 64bit Professional' Language: 'pt' Physical Memory: 3783 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2020.3.32f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker5
+-projectPath
+C:/Users/User/Desktop/Computacao_graficaII/AC2/Project_CG_AC2
+-logFile
+Logs/AssetImportWorker5.log
+-srvPort
+50993
+Successfully changed project path to: C:/Users/User/Desktop/Computacao_graficaII/AC2/Project_CG_AC2

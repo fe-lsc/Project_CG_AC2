@@ -24,11 +24,16 @@ public class GameManager : MonoBehaviour
     private GameObject platform;
     [SerializeField]
     private GameObject gameOverMenu;
+    private Quaternion startPoint;
     private int             highScore;
     private int             score;
     private float           timer;
     private bool            gameOver;
+    private float           elapsedTime;
+    private float           t;
+    private float           lerpDuration = 0.5f;
     private Coroutine hazardsCoroutine;
+    private Coroutine platformCoroutine;
 
    
 
@@ -70,6 +75,18 @@ public class GameManager : MonoBehaviour
             {
                 Pause();
             }
+        }
+
+        if(
+            (
+                (platform.transform.rotation.x < 0.01 && platform.transform.rotation.x > -0.01) &&
+                (platform.transform.rotation.y < 0.01 && platform.transform.rotation.y > -0.01) &&
+                (platform.transform.rotation.z < 0.01 && platform.transform.rotation.z > -0.01) 
+            ) &&
+            platformCoroutine != null)
+        {
+        StopCoroutine(platformCoroutine);
+        platformCoroutine = null;
         }
 
         if (gameOver)
@@ -124,14 +141,14 @@ public class GameManager : MonoBehaviour
             hazard.GetComponent<Rigidbody>().drag = drag;
         }
 
-        if(score % 15 == 0 && score != 0){
-            var x = Random.Range(-10, 10);
-            var z = Random.Range(-10, 10);
+        if(score % 5 == 0 && score != 0){
+            
+            var drag = Random.Range(1f, 2f);
 
-            var drag = Random.Range(0f, 2f);
-            var powerupInstance = Instantiate(powerUpPrefab, new Vector3(x, 11, z), Quaternion.identity);
+            var powerupInstance = Instantiate(powerUpPrefab, new Vector3(1, 11, -2), Quaternion.identity, gameObject.transform);
 
             powerupInstance.GetComponent<Rigidbody>().drag = drag;
+
         }
 
         var timeToWait = Random.Range(0.5f, 1.5f);
@@ -168,5 +185,27 @@ public class GameManager : MonoBehaviour
     public void Enable()
     {
         gameObject.SetActive(true);
+    }
+
+    public void PowerUpPickup(){
+        startPoint = platform.transform.rotation;
+        elapsedTime = 0;
+        t=0;
+
+        platformCoroutine = StartCoroutine(TwistPlatform());
+    }
+
+    private IEnumerator TwistPlatform()
+    {
+        
+        elapsedTime += Time.deltaTime;
+        t = elapsedTime/lerpDuration;
+        platform.transform.rotation = Quaternion.Lerp(startPoint, Quaternion.identity, t);
+            
+        
+
+        yield return new WaitForSeconds(0.001f);
+
+        yield return TwistPlatform();
     }
 }

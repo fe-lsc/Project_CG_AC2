@@ -36,13 +36,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\scripts\PowerUp.cs" />
      <Compile Include="Assets\scripts\Player.cs" />
      <Compile Include="Assets\scripts\AutoDestroyer.cs" />
      <Compile Include="Assets\scripts\MainMenu.cs" />
      <Compile Include="Assets\scripts\Hazard.cs" />
      <Compile Include="Assets\scripts\GameManager.cs" />
      <Compile Include="Assets\scripts\GameOverMenu.cs" />
-     <Compile Include="Assets\scripts\PowerUp.cs" />
      <None Include="Assets\scripts\AssemblyDef.asmdef" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.32f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
